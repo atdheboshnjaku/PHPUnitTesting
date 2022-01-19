@@ -1,0 +1,18 @@
+{
+    "name": "ut/unittest",
+    "description": "Unit testing with PHP Unit",
+    "type": "project",
+    "license": "GPL 3.0",
+    "autoload": {
+        "psr-4": {
+            "Ut\\Unittest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Atdhe Boshnjaku",
+            "email": "atdhe.boshnjaku@gmail.com"
+        }
+    ],
+    "require": {}
+}
