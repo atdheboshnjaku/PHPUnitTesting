@@ -8,7 +8,7 @@ class Receipt
 {
 
 
-    public function total(array $items = [])
+    public function total(array $items = []): ?int 
     {
 
         return array_sum($items);

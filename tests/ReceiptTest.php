@@ -3,7 +3,6 @@
 declare(strict_types = 1);
 
 namespace TDD\Test;
-//require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 use PHPUnit\Framework\TestCase;
 use Ut\Unittest\Receipt;
@@ -11,7 +10,7 @@ use Ut\Unittest\Receipt;
 class ReceiptTest extends TestCase
 {
 
-    public function testTotal() 
+    public function testTotal(): void 
     {
 
         $receipt = new Receipt();
