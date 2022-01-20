@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace TDD;
+namespace Ut\Unittest;
 
 class Receipt
 {

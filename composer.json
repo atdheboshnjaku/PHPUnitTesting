@@ -14,5 +14,7 @@
             "email": "atdhe.boshnjaku@gmail.com"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
 }
