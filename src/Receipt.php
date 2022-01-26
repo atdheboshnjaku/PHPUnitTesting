@@ -20,10 +20,18 @@ class Receipt
 
     }
 
-    public function tax($amount, $tax)
+    public function tax($amount, $tax): float
     {
 
         return ($amount * $tax);
+
+    }
+
+    public function postTaxTotal(array $items, float $tax, ?float $coupon): float
+    {
+
+        $subTotal = $this->total($items, $coupon);
+        return $subTotal + $this->tax($subTotal, $tax);
 
     }
 
