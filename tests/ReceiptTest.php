@@ -24,17 +24,33 @@ class ReceiptTest extends TestCase
 
     }
 
-    public function testTotal(): void 
+    /**
+     * @dataProvider provideTotal
+     */
+
+    public function testTotal(array $items, float $expected): void 
     {
 
-        $input = [0,2,5,8];
         $coupon = null;
-        $output = $this->Receipt->total($input, $coupon);
+        $output = $this->Receipt->total($items, $coupon);
         $this->assertEquals(
-            15, // providing a different number here generates a failure
+            $expected, // providing a different number here generates a failure
             $output,
-            'When summing the total should equal 15'
+            "When summing the total should equal {$expected}"
         );
+
+    }
+
+    public function provideTotal()
+    {
+
+        return [
+
+            'ints totaling 16' => [[1,2,5,8], 16],
+            [[-1,2,5,8], 14],
+            [[1,2,8], 11]
+
+        ];
 
     }
 
@@ -55,11 +71,14 @@ class ReceiptTest extends TestCase
     public function testPostTaxTotal()
     {
 
+        $items = [1,2,5,8];
+        $tax = 0.20;
+        $coupon = null;
         $receipt = $this->getMockBuilder('Ut\Unittest\Receipt')
                         ->setMethods(['tax', 'total'])
                         ->getMock();
-        $receipt->method('total')->will($this->returnValue(10.00));
-        $receipt->method('tax')->will($this->returnValue(1.00));
+        $receipt->expects($this->once())->method('total')->with($items, $coupon)->will($this->returnValue(10.00));
+        $receipt->expects($this->once())->method('tax')->with(10.00, $tax)->will($this->returnValue(1.00));
         $result = $receipt->postTaxTotal([1,2,5,8], 0.20, null);
         $this->assertEquals(11.00, $result);
 
